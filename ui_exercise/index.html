@@ -5,78 +5,101 @@
     <title>One-time Loan Payment</title>
 
     <link rel="stylesheet" href="./css/reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <main>
         <h1>One-time Loan Payment</h1>
-        <form action="#payment" method="post">
+        <form action="#payment" method="post" id="paymentForm">
             <p>Fill out the form below to complete your payment.</p>
 
             <fieldset>
-                <p>
-                    <label for="loanAccountNumber">loan account number</label>
-                    <input type="number" id="loanAccountNumber" value="" required>
-                    <span class="err-txt"></span>
-                </p>
+                <div>
+                    <p>
+                        <label for="loanAccountNumber">loan account number</label>
+                        <input type="number" id="loanAccountNumber" name="loanAcctNum" value="" class="required">
+                        <span class="err-txt"><span>Loan Account Number is required</span></span>
+                    </p>
+
+                </div>
+
                 <section>
-                    <div>
-                        <span>type of account</span>
+                    <div class="payment-options">
+                        <span class="form-option-title">type of account</span>
                         <ul>
                             <li>
-                                <label>
-                                    <input type="radio" name="accountType" value="checking" checked>
+                                <label class="form-control">
+                                    <input type="radio" name="accountType" value="bankAccountInfo" checked>
                                     checking
                                 </label>
                             </li>
                             <li>
-                                <label>
-                                    <input type="radio" name="accountType" value="debit">
+                                <label class="form-control">
+                                    <input type="radio" name="accountType" value="ccInfo">
                                     debit card
                                 </label>
                             </li>
                         </ul>
                     </div>
-                    <div class="bankAccountInfo">
+                    <div class="bankAccountInfo paymentInfo">
                         <p>
                             <label for="routingNumber">routing number</label>
-                            <input type="number" id="routingNumber" value="" maxlength="9" required>
+                            <input type="number" id="routingNumber" name="routNum" value="" maxlength="9" class="required">
+                            <span class="err-txt"><span>Routing Number is required</span></span>
                         </p>
+
                         <p>
                             <label for="bankAccountNumber">bank account number</label>
-                            <input type="number" id="bankAccountNumber" value="" required>
+                            <input type="number" id="bankAccountNumber" name="bankAcctNum" value="" class="required">
+                            <span class="err-txt"><span>Bank Account Number is required</span></span>
                         </p>
+
                         <p>
                             <label for="confirmBankAccountNumber">confirm bank account number</label>
-                            <input type="number" id="confirmBankAccountNumber" value="" required>
+                            <input type="number" id="confirmBankAccountNumber" name="confirmBankAcctNum" value="" class="required">
+                            <span class="err-txt"><span>Confirm Bank Account number is required</span></span>
                         </p>
+
                     </div>
-                    <div class="ccInfo">
+                    <div class="ccInfo paymentInfo">
                         <p>
                             <label for="ccNumber">card number</label>
-                            <input type="number" id="ccNumber" value="" required>
+                            <input type="number" id="ccNumber" name="ccNum" value="" class="required">
+                            <span class="err-txt"><span>Card Number is required</span></span>
                         </p>
                         <p>
                             <label for="ccName">name on card</label>
-                            <input type="text" id="ccName" value="" required>
+                            <input type="text" id="ccName" name="ccName" value="" class="required">
+                            <span class="err-txt"><span>Name on Card is required</span></span>
                         </p>
                         <p class="col50">
                             <label for="expDate">expiration date</label>
-                            <input type="number" id="expDate" value="" required>
+                            <input type="number" id="expDate" name="exp" value="" class="required">
+                            <span class="err-txt"><span>Expiration Date is required</span></span>
                         </p>
+
                         <p class="col50">
                             <label for="cvv">cvv</label>
-                            <input type="number" id="cvv" value="" maxlength="3" required>
+                            <input type="number" id="cvv" value="" name="cvv" maxlength="3" class="required">
+                            <span class="err-txt"><span>CVV is required</span></span>
                         </p>
                     </div>
                 </section>
                 <section>
-                    <div class="bankAccountInfo paymentImage">
-                        <p>Where can I find the routing and account number?</p>
-                        <img src="./assets/img/check.png" alt="Image displaying a sample check showing where to find routing and account number">
+                    <div class="bankAccountInfo paymentInfo paymentImage">
+                        <figure>
+                            <figcaption>Where can I find the routing and<br> account number?</figcaption>
+                            <img src="./assets/img/check.png" alt="Image displaying a sample check showing where to find routing and account number">
+                        </figure>
                     </div>
-                    <div class="ccInfo paymentImage">
-                        <p>Where can I find the CVV number?</p>
-                        <img src="./assets/img/cvv.png" alt="Image displaying back of credit card with CVV number circled">
+                    <div class="ccInfo paymentInfo paymentImage">
+                        <figure>
+                            <figcaption>Where can I find the CVV number?</figcaption>
+                            <img src="./assets/img/cvv.png" alt="Image displaying back of credit card with CVV number circled">
+                        </figure>
                     </div>
                 </section>
             </fieldset>
@@ -88,5 +111,8 @@
     </main>
 
     <script src="./js/main.js"></script>
+    <script>
+
+    </script>
 </body>
 </html>
