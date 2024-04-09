@@ -108,6 +108,14 @@ form .err-txt > span {
     display: block;
 }
 
+form .has-error .err-txt {
+    display: block;
+}
+
+form .has-error lebal {
+    color: #ce0c24;
+}
+
 form > fieldset {
     border: 1px solid #d0d5d8;
     display: flex;

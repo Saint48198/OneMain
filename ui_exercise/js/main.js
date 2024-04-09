@@ -11,6 +11,28 @@
         },
         formEventHandler: function (e) {
             e.preventDefault();
+            let numErrors = 0;
+
+            const inputs = e.target.elements;
+            
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].nodeName === "INPUT"
+                    && !this.isHidden(inputs[i])
+                    && (inputs[i].type === "text" || inputs[i].type === 'number')) {
+
+                    if (inputs[i].value) {
+                        inputs[i].parentNode.className = '';
+                    } else  {
+                        inputs[i].parentNode.className = 'has-error';
+                        numErrors++;
+                    }
+
+                }
+            }
+
+            if (numErrors === 0) {
+                // do something
+            }
 
         },
         paymentOptionClickHandler: function (e) {
@@ -25,7 +47,10 @@
                     selectedPaymentInfo[i].style.display = 'block';
                 }
             }
-        }
+        },
+         isHidden: function(el) {
+             return (el.offsetParent === null)
+         }
     };
     paymentForm.init();
 })();
