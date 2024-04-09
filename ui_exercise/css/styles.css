@@ -101,7 +101,7 @@ form .err-txt {
     color: #ce0c24;
     border-top: 1px solid #d0d5d8;
     background-color: #fae6e9;
-    display: block;
+    display: none;
 }
 form .err-txt > span {
     padding: 3px 8px;
@@ -265,4 +265,34 @@ button[type=submit] {
 button[type=submit]:active,
 button[type=submit]:hover {
     background-color: #027370;
+}
+
+/* Mobile styles (up to 767px) */
+@media only screen and (max-width: 767px) {
+    body {
+        padding: 60px 15px 20px;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    fieldset > section {
+        flex-basis: 100%;
+    }
+    fieldset > section:first-child {
+        flex-basis: 100%;
+    }
+
+    fieldset > section:last-child {
+        border-top: 1px solid #d0d5d8;
+        border-left: none;
+    }
+
+    button[type=submit] {
+        width: 100%;
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
