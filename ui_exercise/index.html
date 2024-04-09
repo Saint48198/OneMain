@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>One-time Loan Payment</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+</head>
+<body>
+    <main>
+        <h1>One-time Loan Payment</h1>
+        <form action="#payment" method="post">
+            <p>Fill out the form below to complete your payment.</p>
+
+            <fieldset>
+                <p>
+                    <label for="loanAccountNumber">loan account number</label>
+                    <input type="number" id="loanAccountNumber" value="" required>
+                    <span class="err-txt"></span>
+                </p>
+                <section>
+                    <div>
+                        <span>type of account</span>
+                        <ul>
+                            <li>
+                                <label>
+                                    <input type="radio" name="accountType" value="checking" checked>
+                                    checking
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="accountType" value="debit">
+                                    debit card
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bankAccountInfo">
+                        <p>
+                            <label for="routingNumber">routing number</label>
+                            <input type="number" id="routingNumber" value="" maxlength="9" required>
+                        </p>
+                        <p>
+                            <label for="bankAccountNumber">bank account number</label>
+                            <input type="number" id="bankAccountNumber" value="" required>
+                        </p>
+                        <p>
+                            <label for="confirmBankAccountNumber">confirm bank account number</label>
+                            <input type="number" id="confirmBankAccountNumber" value="" required>
+                        </p>
+                    </div>
+                    <div class="ccInfo">
+                        <p>
+                            <label for="ccNumber">card number</label>
+                            <input type="number" id="ccNumber" value="" required>
+                        </p>
+                        <p>
+                            <label for="ccName">name on card</label>
+                            <input type="text" id="ccName" value="" required>
+                        </p>
+                        <p class="col50">
+                            <label for="expDate">expiration date</label>
+                            <input type="number" id="expDate" value="" required>
+                        </p>
+                        <p class="col50">
+                            <label for="cvv">cvv</label>
+                            <input type="number" id="cvv" value="" maxlength="3" required>
+                        </p>
+                    </div>
+                </section>
+                <section>
+                    <div class="bankAccountInfo paymentImage">
+                        <p>Where can I find the routing and account number?</p>
+                        <img src="./assets/img/check.png" alt="Image displaying a sample check showing where to find routing and account number">
+                    </div>
+                    <div class="ccInfo paymentImage">
+                        <p>Where can I find the CVV number?</p>
+                        <img src="./assets/img/cvv.png" alt="Image displaying back of credit card with CVV number circled">
+                    </div>
+                </section>
+            </fieldset>
+
+            <div class="container-actions">
+                <button type="submit">make payment</button>
+            </div>
+        </form>
+    </main>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
