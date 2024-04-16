@@ -9,6 +9,10 @@ form {
     font-weight: 400; /* regular */
     font-size: 1rem;
     margin-bottom: 15px;
+
+    &.form-intro {
+      margin-bottom: 30px;
+    }
   }
 
   .err-txt {
@@ -17,7 +21,6 @@ form {
     color: #ce0c24;
     border-top: 1px solid #d0d5d8;
     background-color: #fae6e9;
-    display: none;
 
     > span {
       padding: 3px 8px;
@@ -43,12 +46,9 @@ form {
     label {
       display: block;
       width: 100%;
-
-      .form-option-title {
-        font-size: 0.75rem;
-        font-weight: 700; /* bold */
-        text-transform: capitalize;
-      }
+      font-size: 0.75rem;
+      font-weight: 700; /* bold */
+      text-transform: capitalize;
     }
 
     input[type=number], input[type=text] {
@@ -122,10 +122,26 @@ form {
 .payment-options {
   padding: 3px 8px 12px;
 
+  .form-option-title {
+    font-size: 0.75rem;
+    font-weight: 700; /* bold */
+    text-transform: capitalize;
+  }
+
+  ul {
+    margin-top: 5px;
+  }
+
   li {
     display: inline-block;
     margin-right: 6px;
+
+    label {
+      font-weight: 400; /* regular */
+    }
   }
+
+
 
   .form-control {
     display: grid;
@@ -187,9 +203,39 @@ button[type=submit] {
   padding: 20px 50px;
   line-height: 1;
   text-transform: uppercase;
+
+  &:active,
+  &:hover {
+    background-color: #027370;
+  }
+
+  &:focus {
+    outline: 3px dashed #ccc;
+  }
 }
-button[type=submit]:active,
-button[type=submit]:hover {
-  background-color: #027370;
+
+/* Mobile styles (up to 767px) */
+@media only screen and (max-width: 767px) {
+  form > fieldset {
+    > section {
+      flex-basis: 100%;
+
+      &:first-child {
+        flex-basis: 100%;
+      }
+      &:last-child {
+        border-top: 1px solid #d0d5d8;
+        border-left: none;
+      }
+    }
+  }
+
+  button[type=submit] {
+    width: 100%;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
+
 

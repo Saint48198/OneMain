@@ -3,7 +3,6 @@ export class PaymentBankAccount {
     public accountNumber: number,
     public routingNumber: number,
     public bankAccountNumber: number,
-
   ) {
   }
 }

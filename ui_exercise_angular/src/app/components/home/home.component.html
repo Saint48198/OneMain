@@ -1,14 +1,17 @@
 <div class="container-paymentPage">
   <h1>One-time Loan Payment</h1>
-  <form action="#payment" method="post" id="paymentForm" (submit)="handleFormSubmit($event)">
-    <p>Fill out the form below to complete your payment.</p>
+  <form action="#payment" method="post" id="paymentForm" (submit)="handleFormSubmit($event)" [formGroup]="paymentForm">
+    <p class="form-intro">Fill out the form below to complete your payment.</p>
 
     <fieldset>
       <div>
-        <p>
+        <p [ngClass]="{ 'has-error': f['loanAcctNum']['invalid'] && (f['loanAcctNum']['dirty'] || f['loanAcctNum']['touched']) }">
           <label for="loanAccountNumber">loan account number</label>
-          <input type="number" id="loanAccountNumber" name="loanAcctNum" value="" class="required">
-          <span class="err-txt"><span>Loan Account Number is required</span></span>
+          <input type="number" id="loanAccountNumber" formControlName="loanAcctNum" value="" required>
+
+          <span class="err-txt" *ngIf="f['loanAcctNum']['invalid'] && (f['loanAcctNum']['dirty'] || f['loanAcctNum']['touched'])">
+            <span>Loan Account Number is required</span>
+          </span>
         </p>
 
       </div>
@@ -19,70 +22,84 @@
           <ul>
             <li>
               <label class="form-control">
-                <input type="radio" name="accountType" value="bankAccountInfo" [checked]="selectedPaymentType === 'bankAccountInfo'" (change)="handlePaymentTypeChange($event)">
+                <input type="radio" name="accountType" value="bankAccountInfo" [checked]="isChecking" (change)="handlePaymentTypeChange($event)">
                 checking
               </label>
             </li>
             <li>
               <label class="form-control">
-                <input type="radio" name="accountType" value="ccInfo" [checked]="selectedPaymentType === 'ccInfo'" (change)="handlePaymentTypeChange($event)">
+                <input type="radio" name="accountType" value="ccInfo" [checked]="!isChecking" (change)="handlePaymentTypeChange($event)">
                 debit card
               </label>
             </li>
           </ul>
         </div>
-        <div class="bankAccountInfo paymentInfo" [hidden]="selectedPaymentType !== 'bankAccountInfo'">
-          <p>
+        <div class="bankAccountInfo paymentInfo" *ngIf="isChecking">
+          <p [ngClass]="{ 'has-error': f['routNum']['invalid'] && (f['routNum']['dirty'] || f['routNum']['touched']) }">
             <label for="routingNumber">routing number</label>
-            <input type="number" id="routingNumber" name="routNum" value="" maxlength="9" class="required">
-            <span class="err-txt"><span>Routing Number is required</span></span>
+            <input type="number" id="routingNumber" formControlName="routNum" value="" maxlength="9" required>
+            <span *ngIf="f['routNum']['invalid'] && (f['routNum']['dirty'] || f['routNum']['touched'])" class="err-txt">
+              <span>Routing Number is required</span>
+            </span>
           </p>
 
-          <p>
+          <p [ngClass]="{ 'has-error': f['bankAcctNum']['invalid'] && (f['bankAcctNum']['dirty'] || f['bankAcctNum']['touched']) }">
             <label for="bankAccountNumber">bank account number</label>
-            <input type="number" id="bankAccountNumber" name="bankAcctNum" value="" class="required">
-            <span class="err-txt"><span>Bank Account Number is required</span></span>
+            <input type="number" id="bankAccountNumber" formControlName="bankAcctNum" value="" required>
+            <span *ngIf="f['bankAcctNum']['invalid'] && (f['bankAcctNum']['dirty'] || f['bankAcctNum']['touched'])" class="err-txt">
+              <span>Bank Account Number is required</span>
+            </span>
           </p>
 
-          <p>
+          <p [ngClass]="{ 'has-error': f['confirmBankAcctNum']['invalid'] && (f['confirmBankAcctNum']['dirty'] || f['confirmBankAcctNum']['touched']) }">
             <label for="confirmBankAccountNumber">confirm bank account number</label>
-            <input type="number" id="confirmBankAccountNumber" name="confirmBankAcctNum" value="" class="required">
-            <span class="err-txt"><span>Confirm Bank Account number is required</span></span>
+            <input type="number" id="confirmBankAccountNumber" formControlName="confirmBankAcctNum" value="" required>
+            <span *ngIf="f['confirmBankAcctNum']['invalid'] && (f['confirmBankAcctNum']['dirty'] || f['confirmBankAcctNum']['touched'])" class="err-txt">
+              <span>Confirm Bank Account number is required</span>
+            </span>
           </p>
 
         </div>
-        <div class="ccInfo paymentInfo" [hidden]="selectedPaymentType !== 'ccInfo'">
-          <p>
+        <div class="ccInfo paymentInfo" *ngIf="!isChecking">
+          <p [ngClass]="{ 'has-error': f['ccNum']['invalid'] && (f['ccNum']['dirty'] || f['ccNum']['touched']) }">
             <label for="ccNumber">card number</label>
-            <input type="number" id="ccNumber" name="ccNum" value="" class="required">
-            <span class="err-txt"><span>Card Number is required</span></span>
+            <input type="number" id="ccNumber" formControlName="ccNum" value="" required>
+            <span class="err-txt" *ngIf="f['ccNum']['invalid'] && (f['ccNum']['dirty'] || f['ccNum']['touched'])">
+              <span>Card Number is required</span>
+            </span>
           </p>
-          <p>
+          <p [ngClass]="{ 'has-error': f['ccName']['invalid'] && (f['ccName']['dirty'] || f['ccName']['touched']) }">
             <label for="ccName">name on card</label>
-            <input type="text" id="ccName" name="ccName" value="" class="required">
-            <span class="err-txt"><span>Name on Card is required</span></span>
+            <input type="text" id="ccName" formControlName="ccName" value="" required>
+            <span class="err-txt" *ngIf="f['ccName']['invalid'] && (f['ccName']['dirty'] || f['ccName']['touched'])">
+              <span>Name on Card is required</span>
+            </span>
           </p>
-          <p class="col50">
+          <p class="col50" [ngClass]="{ 'has-error': f['exp']['invalid'] && (f['exp']['dirty'] || f['exp']['touched']) }">
             <label for="expDate">expiration date</label>
-            <input type="number" id="expDate" name="exp" value="" class="required">
-            <span class="err-txt"><span>Expiration Date is required</span></span>
+            <input type="number" id="expDate" formControlName="exp" value="" required>
+            <span class="err-txt" *ngIf="f['exp']['invalid'] && (f['exp']['dirty'] || f['exp']['touched'])">
+              <span>Expiration Date is required</span>
+            </span>
           </p>
 
-          <p class="col50">
+          <p class="col50" [ngClass]="{ 'has-error': f['cvv']['invalid'] && (f['cvv']['dirty'] || f['cvv']['touched']) }">
             <label for="cvv">cvv</label>
-            <input type="number" id="cvv" value="" name="cvv" maxlength="3" class="required">
-            <span class="err-txt"><span>CVV is required</span></span>
+            <input type="number" id="cvv" value="" formControlName="cvv" maxlength="3" required>
+            <span class="err-txt" *ngIf="f['cvv']['invalid'] && (f['cvv']['dirty'] || f['cvv']['touched'])">
+              <span>CVV is required</span>
+            </span>
           </p>
         </div>
       </section>
       <section>
-        <div class="bankAccountInfo paymentInfo paymentImage" [hidden]="selectedPaymentType !== 'bankAccountInfo'">
+        <div class="bankAccountInfo paymentInfo paymentImage" [hidden]="!isChecking">
           <figure>
             <figcaption>Where can I find the routing and<br> account number?</figcaption>
             <img src="./assets/images/check.png" alt="Image displaying a sample check showing where to find routing and account number">
           </figure>
         </div>
-        <div class="ccInfo paymentInfo paymentImage" [hidden]="selectedPaymentType !== 'ccInfo'">
+        <div class="ccInfo paymentInfo paymentImage" [hidden]="isChecking">
           <figure>
             <figcaption>Where can I find the CVV number?</figcaption>
             <img src="./assets/images/cvv.png" alt="Image displaying back of credit card with CVV number circled">
